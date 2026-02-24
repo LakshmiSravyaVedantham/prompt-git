@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prompt-git"
+version = "0.1.0"
+description = "Version control for LLM prompts. Track, diff, and manage your prompt evolution."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "sravyalu" }]
+keywords = ["llm", "prompts", "version-control", "cli", "ai", "devtools"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Version Control",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "isort>=5.0",
+    "flake8>=6.0",
+]
+
+[project.scripts]
+prompt-git = "prompt_git.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/LakshmiSravyaVedantham/prompt-git"
+Repository = "https://github.com/LakshmiSravyaVedantham/prompt-git"
+Issues = "https://github.com/LakshmiSravyaVedantham/prompt-git/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=prompt_git --cov-report=term-missing -v"
+
+[tool.coverage.run]
+source = ["prompt_git"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
